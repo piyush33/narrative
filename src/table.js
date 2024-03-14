@@ -1,12 +1,17 @@
 import {useEffect, useState} from "react";
+import { getTable } from "./api";
+
 
 const Table = () =>{
     const [newTable, setNewTable] = useState([]);
+    const [table, setTable] = useState([]);
 
-    let table = [
-        { firstName: "Beth", lastName: "Smith", class1: "English", class2: "Math", school: "Harvard", location: "Boston" },
-        { firstName: "Rahul", lastName: "Shankar", class1: "Physics", class2: "Chemistry", school: "Stanford", location: "Palo Alto" }
-     ]
+    const getTableApi = () => {
+        getTable()
+          .then((data)=>{
+           setTable(data);
+          })         
+    }
 
 
     let databaseStructure = { name: String, class: String, school: String, location: String } 
@@ -23,7 +28,9 @@ const Table = () =>{
       })
     }
 
+
     useEffect(()=>{
+        getTableApi();
         csvTool();
     },[])
 
