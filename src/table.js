@@ -30,9 +30,14 @@ const Table = () =>{
 
 
     useEffect(()=>{
-        getTableApi();
-        csvTool();
+        getTableApi();  
     },[])
+
+    useEffect(()=>{
+        csvTool();
+    },[table])
+
+    console.log("table:",table);
 
     return(
         <>
